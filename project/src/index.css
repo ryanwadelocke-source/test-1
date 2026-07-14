@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #1a3a30;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.05) 2px,
+        rgba(0, 0, 0, 0.05) 4px
+      );
+    min-height: 100vh;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+}
+
+@layer components {
+  .lcd-screen {
+    background-color: #cdd9a4;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.02) 1px,
+      rgba(0, 0, 0, 0.02) 2px
+    );
+  }
+
+  .lcd-title-bar {
+    background-color: #1c2810;
+    color: #cdd9a4;
+    font-family: 'VT323', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .lcd-item-row {
+    border-bottom: 1px dotted #7a9060;
+    transition: background-color 0.05s;
+  }
+
+  .lcd-item-row:hover {
+    background-color: #b8cc8c;
+  }
+
+
+  .lcd-divider {
+    border: none;
+    border-top: 1px solid #7a9060;
+    margin: 0;
+  }
+
+  .lcd-section-header {
+    background-color: #7a9060;
+    color: #1c2810;
+    font-family: 'VT323', monospace;
+    letter-spacing: 0.1em;
+  }
+
+  .pda-button {
+    background: radial-gradient(circle at 40% 35%, #f5f2ec, #d8d2c4);
+    box-shadow:
+      inset 0 1px 2px rgba(255,255,255,0.7),
+      inset 0 -1px 2px rgba(0,0,0,0.15),
+      0 2px 4px rgba(0,0,0,0.4);
+    transition: all 0.08s ease;
+  }
+
+  .pda-button:active {
+    box-shadow:
+      inset 0 2px 4px rgba(0,0,0,0.25),
+      0 1px 2px rgba(0,0,0,0.3);
+    transform: translateY(1px);
+  }
+
+  .pda-button.active {
+    background: radial-gradient(circle at 40% 35%, #c8c2b4, #b8b2a4);
+    box-shadow:
+      inset 0 2px 4px rgba(0,0,0,0.3),
+      0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .pda-button.active svg {
+    color: #3a3530;
+  }
+
+  .shell-plastic {
+    background: linear-gradient(
+      135deg,
+      #f5f2ec 0%,
+      #ede9e0 30%,
+      #e5e0d5 60%,
+      #dbd5c8 100%
+    );
+    box-shadow:
+      0 0 0 2px rgba(255,255,255,0.6) inset,
+      0 12px 40px rgba(0,0,0,0.5),
+      0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .shell-side-texture {
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0.08) 0px,
+      rgba(0,0,0,0.08) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  }
+
+  .screen-bezel {
+    background: linear-gradient(135deg, #2a3828, #1a2818);
+    box-shadow:
+      inset 0 2px 6px rgba(0,0,0,0.8),
+      inset 0 0 0 1px rgba(255,255,255,0.05);
+  }
+
+  .lcd-scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.03) 1px,
+      rgba(0, 0, 0, 0.03) 2px
+    );
+    pointer-events: none;
+  }
+
+  .pixel-shadow {
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .lcd-checkbox {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #1c2810;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .lcd-arrow {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid #1c2810;
+    display: inline-block;
+  }
+
+  .lcd-arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 6px solid #1c2810;
+    display: inline-block;
+  }
+
+  .blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  [data-editable] {
+    cursor: text;
+    outline: none;
+    border-bottom: 1px dashed rgba(28, 40, 16, 0.35);
+    min-width: 0.4em;
+    display: inline-block;
+  }
+
+  [data-editable]:focus {
+    background: rgba(28, 40, 16, 0.07);
+    border-bottom-color: rgba(28, 40, 16, 0.65);
+  }
+
+  .page-enter {
+    animation: pageEnter 0.12s ease-out;
+  }
+
+  @keyframes pageEnter {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 18s linear infinite;
+  }
+
+  .ticker-track:hover {
+    animation-play-state: paused;
+  }
+}
